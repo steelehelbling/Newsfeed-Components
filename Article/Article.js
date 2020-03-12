@@ -112,3 +112,65 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+const contentCreator = (title, date, paragraphOne, paragraphTwo, paragraphThree) => {
+  const article = document.createElement('div');
+  article.classList.add('article');
+  article.id = 'book';
+
+  const articleDate = document.createElement('p');
+
+
+
+    const firstParagraph = document.createElement('p');
+
+    firstParagraph.classList.add('content');
+
+    firstParagraph.textContent = paragraphOne;
+
+    const secondParagraph = document.createElement('p');
+    secondParagraph.classList.add('content');
+    secondParagraph.textContent = paragraphTwo;
+
+    const thirdParagraph = document.createElement('p');
+    thirdParagraph.classList.add('content');
+    thirdParagraph.textContent = paragraphThree;
+
+    articleDate.classList.add('date');
+
+    articleDate.textContent = date;
+    
+    const articleToggle = (event) => {
+    article.classList.toggle('article-open');
+    
+
+  }
+
+  const expandButton = document.createElement('span');
+    expandButton.classList.add('expandButton');
+    expandButton.textContent = 'Info';
+    expandButton.id = 'clickMe';
+
+  expandButton.addEventListener('click', articleToggle );
+
+  const articletitle = document.createElement('h2');
+  articletitle.textContent = title;
+
+     article.appendChild(articletitle);
+     article.appendChild(articleDate);
+     article.appendChild(firstParagraph);
+     article.appendChild(secondParagraph);
+     article.appendChild(thirdParagraph);
+     article.appendChild(expandButton);
+
+  return article;
+}
+
+const articles = document.querySelector('.articles');
+
+
+data.forEach((currentItem) => {
+  const newArticle = contentCreator(currentItem.title, 
+    currentItem.date, currentItem.firstParagraph, 
+    currentItem.secondParagraph, currentItem.thirdParagraph);
+  articles.appendChild(newArticle);
+});                                      
